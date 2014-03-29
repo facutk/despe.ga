@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <title>Despe.ga</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+    <script type='text/javascript' src="http://maps.google.com/maps/api/js?sensor=false&dummy=.js"></script>
+    <link rel="stylesheet" href="http://bootswatch.com/united/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style type='text/css'>
+         body {
+            padding-top: 20px;
+            padding-bottom: 60px;
+          }
+
+          /* Custom container */
+          .container {
+            margin: 0 auto;
+            max-width: 1000px;
+          }
+          .container_jumbo {
+            margin: 0 auto;
+            max-width: 100%;
+          }
+          .container > hr {
+            margin: 60px 0;
+          }
+
+          /* Main marketing message and sign up button */
+          #map_canvas {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            position:relative;
+          }
+      </style>
+  
+<script type='text/javascript'>//<![CDATA[ 
+    $(window).load(function(){
+    var map;
+
+jQuery(function($) {
+    $(document).ready(function() {
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        google.maps.event.trigger(map, 'resize');
+
+        $('a[href="#map"]').on('shown', function(e) {
+            google.maps.event.trigger(map, 'resize');
+        });
+        
+        $('#myTab a[href="#map"]').on('shown', function(){
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(latlng);
+        });
+        initialize(map);
+    });
+    
+     function initialize(myPano) {
+        var latlng = new google.maps.LatLng(-16.920728, 145.769219);
+          var panoramaOptions = {
+            position: latlng,
+            pov: {
+              heading: 165,
+              pitch: 0
+            },
+              zoom : 1
+          };
+          var myPano = new google.maps.StreetViewPanorama(
+              document.getElementById('street_canvas'),
+              panoramaOptions);
+          map.setStreetView(myPano);
+        }
+        });
+        });//]]>  
+
+</script>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="bs-component">
+          <div class="navbar navbar-default">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <a class="navbar-brand" href="http://bootswatch.com/united/#">Despe.ga
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="">Home</a></li>
+                <li><a href="">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="jumbotron">
+          <div id="map_canvas"></div>
+      </div>
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+              <p>2014 Despe.ga <img src="img/logo.png" style="width:40px; height: 40px"/> </p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootswatch.js"></script>
+
+    </body>
+</html>
