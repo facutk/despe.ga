@@ -48,6 +48,10 @@ Proyecto Despe.ga - Marzo 2014.
 
 git push heroku master
 
+Hacer que no pida username y password en todos los commit
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+
 Solución cuando queres commitear cambios y dice "Everything up-to-date"
 Posiblemente estes trabajando fuera del branch 
 
