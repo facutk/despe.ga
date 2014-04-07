@@ -1,4 +1,6 @@
-# Manual de Alta de Desarrollador. Proyecto Despe.ga.. Marzo 2014. ![alt text](http://www.despe.ga/static/logo.png)
+# Manual de Alta de Desarrollador.
+# Proyecto Despe.ga - Marzo 2014.
+![alt text](http://www.despe.ga/static/logo.png)
  2001  sudo apt-get install heroku
  2002  wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
