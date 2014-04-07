@@ -7,65 +7,61 @@ Proyecto Despe.ga - Marzo 2014.
 * sudo apt-get install heroku
 * wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
- 2001  sudo apt-get install heroku
- 2002  wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+## OPCIONAL - Crear directorio para almacenar proyectos
+* mkdir proyectos
+* cd proyectos
 
+## Clonar repositorio y crear branch local.
+* git clone https://github.com/facutk/despe.ga.git
 
- 2005  git clone https://github.com/facutk/despe.ga.git
- 2006  ls
- 2007  cd despe.ga/
- 2008  lñs
- 2009  ls
- 2010  sudo pip install virtualend
- 2011  sudo pip install virtualenv
- 2012  sudo easy_install pip virtualenv
- 2013  which pip
- 2014  python
- 2015  which easy_install
- 2016  sudo apt-get install pip
- 2017  sudo apt-get install easy_install
- 2018  sudo pip install virtualenv
- 2019  virtualenv venv
- 2020  source venv/bin/activate
- 2021  ls
- 2022  cat requirements.txt 
- 2023  pip freeze
- 2024  pip install -r requirements.txt 
- 2025  cat app.py 
- 2026  cat Procfile 
- 2027  cat requirements.txt 
- 2028  cat Procfile 
- 2029  cat app.py 
- 2030  foreman start
+## Instalar Virtual Enviroment
+* Instalar paquete python-pip. (Desde synaptics, apt-get, etc)
+* sudo pip install virtualenv
+* virtualenv venv
+* source venv/bin/activate
 
- 1945  git add README.md
- 1946  git commit -m "Agregamos README.md"
- 1947  git config --global user.email "damianfiuba@gmail.com"
- 1948  git config --global user.name "Damn"
- 1949  git commit -m "Agregamos README.md"
- 1950  git push origin master
+### Comprobar requerimientos
+* cat requirements.txt
 
+### (No tengo idea que hace)
+* pip freeze
 
-git push heroku master
+### Instalar requerimientos
+* pip install -r requirements.txt
 
-Hacer que no pida username y password en todos los commit
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=3600'
+### Iniciar entorno virtual
+* foreman start
 
-Solución cuando queres commitear cambios y dice "Everything up-to-date"
-Posiblemente estes trabajando fuera del branch 
+## Configurar email y nombre en git
+* git config --global user.email "your_mail@example.com"
+* git config --global user.name "Your_name"
 
-Listar Branches Remotos
-git remote show origin
+## Hacer que no pida username y password en todos los commit
+* git config --global credential.helper cache
+* git config --global credential.helper 'cache --timeout=3600'
 
-Listar Branches Locales
-git branch
+## Commitear a github (ejemplo, comittear README.md)
+* git add README.md
+* git commit -m "Agregamos README.md"
+* git push origin master
 
-Entre los branches locales dice "no branch"? Estas trabajando fuera del branch.
-¿Como volver?
+## Commitear a heroku, version en produccion
+* git push heroku master
 
-Commitear cuando hiciste cambios en detached state (no branch)
-git branch temp
-git checkout master # or any other branch
-git merge temp
-git branch -d temp
+## Solución cuando queres commitear cambios y dice "Everything up-to-date"
+**Posiblemente estes trabajando fuera del branch**
+
+### Listar Branches Remotos
+* git remote show origin
+
+### Listar Branches Locales
+* git branch
+
+**Entre los branches locales dice "no branch"? Estas trabajando fuera del branch.**
+**¿Como volver?**
+
+### Commitear cuando hiciste cambios en detached state (no branch)
+* git branch temp
+* git checkout master # or any other branch
+* git merge temp
+* git branch -d temp
