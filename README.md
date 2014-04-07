@@ -39,3 +39,21 @@
 
 
 git push heroku master
+
+Solución cuando queres commitear cambios y dice "Everything up-to-date"
+Posiblemente estes trabajando fuera del branch 
+
+Listar Branches Remotos
+git remote show origin
+
+Listar Branches Locales
+git branch
+
+Entre los branches locales dice "no branch"? Estas trabajando fuera del branch.
+¿Como volver?
+
+Commitear cuando hiciste cambios en detached state (no branch)
+git branch temp
+git checkout master # or any other branch
+git merge temp
+git branch -d temp
