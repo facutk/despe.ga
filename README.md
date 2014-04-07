@@ -50,7 +50,7 @@ Proyecto Despe.ga - Marzo 2014.
 ### Commitear a heroku, version en produccion
 * git push heroku master
 
-# Solución de problemas
+## Solución de problemas
 
 ### Solución cuando queres commitear cambios y dice "Everything up-to-date"
 **Posiblemente estes trabajando fuera del branch**
