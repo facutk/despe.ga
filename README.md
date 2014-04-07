@@ -1,4 +1,4 @@
-# Manual de Alta de Desarrollador.
+# Manual de Desarrollador.
 Proyecto Despe.ga - Marzo 2014.
 
 ![alt text](http://www.despe.ga/static/logo.png)
