@@ -1,4 +1,4 @@
-
+# Manual de Alta de Desarrollador. Proyecto Despe.ga. Marzo 2014. ![alt text][logo]
  2001  sudo apt-get install heroku
  2002  wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
@@ -30,4 +30,12 @@
  2029  cat app.py 
  2030  foreman start
 
+ 1945  git add README.md
+ 1946  git commit -m "Agregamos README.md"
+ 1947  git config --global user.email "damianfiuba@gmail.com"
+ 1948  git config --global user.name "Damn"
+ 1949  git commit -m "Agregamos README.md"
+ 1950  git push origin master
 
+
+git push heroku master
