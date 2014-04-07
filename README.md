@@ -2,6 +2,8 @@
 Proyecto Despe.ga - Marzo 2014.
 ![alt text](http://www.despe.ga/static/logo.png)
 
+prueba
+
 ## Instalar Heroku (Ubuntu)
 * sudo apt-get install heroku
 * wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
