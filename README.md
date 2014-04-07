@@ -7,7 +7,7 @@ Proyecto Despe.ga - Marzo 2014.
 * sudo apt-get install heroku
 * wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
-## OPCIONAL - Crear directorio para almacenar proyectos
+#### OPCIONAL - Crear directorio para almacenar proyectos
 * mkdir proyectos
 * cd proyectos
 
