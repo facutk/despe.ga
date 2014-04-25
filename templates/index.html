@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
     <script type='text/javascript' src="http://maps.google.com/maps/api/js?sensor=false&dummy=.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <link rel="stylesheet" href="http://bootswatch.com/united/bootstrap.css" media="screen">
     <link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -42,45 +43,74 @@
     $(window).load(function(){
     var map;
 
-jQuery(function($) {
-    $(document).ready(function() {
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
-        var myOptions = {
-            zoom: 8,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        google.maps.event.trigger(map, 'resize');
+    jQuery(function($) {
+       $(document).ready(function() {
+   
+          latitude=-34.397;
+          longitude=150.644;
 
-        $('a[href="#map"]').on('shown', function(e) {
-            google.maps.event.trigger(map, 'resize');
-        });
+          if(google.loader.ClientLocation) {
+             latitude = google.loader.ClientLocation.latitude;
+             longitude = google.loader.ClientLocation.longitude;
+          }
+
+          var latlng = new google.maps.LatLng(latitude, longitude);
+          var myOptions = {
+             zoom: 8,
+             center: latlng,
+             mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+          google.maps.event.trigger(map, 'resize');
+
+          // Try HTML5 geolocation
+          if(navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = new google.maps.LatLng(position.coords.latitude,
+                                 position.coords.longitude);
+
+                var infowindow = new google.maps.InfoWindow({
+                                        map: map,
+                                        position: pos,
+                                        content: 'GeoLoc is ON. Thanks for using despe.ga'
+                                        });
+
+                map.setCenter(pos);
+             }, function() {
+                   handleNoGeolocation(true);
+                });
+             } else {
+                  // Browser doesn't support Geolocation
+                  handleNoGeolocation(false);
+             }
+
+          $('a[href="#map"]').on('shown', function(e) {
+             google.maps.event.trigger(map, 'resize');
+          });
         
-        $('#myTab a[href="#map"]').on('shown', function(){
-            google.maps.event.trigger(map, 'resize');
-            map.setCenter(latlng);
-        });
-        initialize(map);
-    });
+          $('#myTab a[href="#map"]').on('shown', function(){
+             google.maps.event.trigger(map, 'resize');
+             map.setCenter(latlng);
+          });
+          initialize(map);
+       });
     
-     function initialize(myPano) {
-        var latlng = new google.maps.LatLng(-16.920728, 145.769219);
+       function initialize(myPano) {
+          var latlng = new google.maps.LatLng(-16.920728, 145.769219);
           var panoramaOptions = {
-            position: latlng,
-            pov: {
-              heading: 165,
-              pitch: 0
-            },
-              zoom : 1
+             position: latlng,
+             pov: {
+                heading: 165,
+                pitch: 0
+             },
+             zoom : 1
           };
           var myPano = new google.maps.StreetViewPanorama(
-              document.getElementById('street_canvas'),
-              panoramaOptions);
+             document.getElementById('street_canvas'), panoramaOptions);
           map.setStreetView(myPano);
-        }
-        });
-        });//]]>  
+       }
+   });
+});//]>
 
 </script>
 
