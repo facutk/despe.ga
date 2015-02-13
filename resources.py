@@ -1,27 +1,26 @@
 import json
-from flask import request, abort, render_template
+from flask import abort, render_template, request
 from flask.ext import restful
-from flask.ext.restful import reqparse
 from app import app, api, mongo, auth
 from bson.objectid import ObjectId
 
 class ReadingList(restful.Resource):
     def __init__(self, *args, **kwargs):
-        self.parser = reqparse.RequestParser()
-        self.parser.add_argument('reading', type=str)
         super(ReadingList, self).__init__()
 
     def get(self):
         return  [x for x in mongo.db.readings.find()]
 
     def post(self):
-        args = self.parser.parse_args()
-        if not args['reading']:
-            abort(400)
-
-        jo = json.loads(args['reading'])
-        reading_id =  mongo.db.readings.insert(jo)
+        reading = request.json
+        reading_id =  mongo.db.readings.insert(reading)
         return mongo.db.readings.find_one({"_id": reading_id})
+        #args = self.parser.parse_args()
+        #if not args['reading']:
+        #    abort(400)
+
+        #jo = json.loads(args['reading'])
+
 
 
 class Reading(restful.Resource):
@@ -43,7 +42,7 @@ class Root(restful.Resource):
         }
 
 api.add_resource(Root, '/x')
-api.add_resource(ReadingList, '/readings/')
+api.add_resource(ReadingList, '/readings')
 api.add_resource(Reading, '/readings/<ObjectId:reading_id>')
 
 
