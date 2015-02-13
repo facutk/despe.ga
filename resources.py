@@ -2,9 +2,8 @@ import json
 from flask import request, abort, render_template
 from flask.ext import restful
 from flask.ext.restful import reqparse
-from app import app, api, mongo
+from app import app, api, mongo, auth
 from bson.objectid import ObjectId
-
 
 class ReadingList(restful.Resource):
     def __init__(self, *args, **kwargs):
@@ -36,6 +35,7 @@ class Reading(restful.Resource):
 
 
 class Root(restful.Resource):
+    method_decorators = [auth.login_required]
     def get(self):
         return {
             'status': 'OK',
@@ -54,3 +54,8 @@ def index():
 @app.route('/saludo')
 def saludo():
     return 'Hola'
+    
+@app.route('/secret')
+@auth.login_required
+def secret():
+    return "Hello, %s!" % auth.username()
