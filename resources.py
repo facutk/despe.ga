@@ -27,6 +27,11 @@ class Reading(restful.Resource):
     def get(self, reading_id):
         return mongo.db.readings.find_one_or_404({"_id": reading_id})
 
+    def put(self, reading_id):
+        print request.json
+        mongo.db.readings.update({"_id":reading_id}, { request.json })
+        return mongo.db.readings.find_one({"_id": reading_id})
+        
     def delete(self, reading_id):
         mongo.db.readings.find_one_or_404({"_id": reading_id})
         mongo.db.readings.remove({"_id": reading_id})
