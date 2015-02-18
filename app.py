@@ -29,8 +29,10 @@ def add_cors(resp):
     if app.debug:
         resp.headers['Access-Control-Max-Age'] = '1'
     return resp
-"""
-"""
+    
+@app.errorhandler(404)
+def notfound(error):
+    return make_response(jsonify({'error': 'Not Found'}), 404)
 
 def output_json(obj, code, headers=None):
     resp = make_response(dumps(obj), code)

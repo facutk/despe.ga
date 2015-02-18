@@ -13,23 +13,17 @@ class ReadingList(restful.Resource):
 
     def post(self):
         reading = request.json
+        print reading
         reading_id =  mongo.db.readings.insert(reading)
         return mongo.db.readings.find_one({"_id": reading_id})
-        #args = self.parser.parse_args()
-        #if not args['reading']:
-        #    abort(400)
-
-        #jo = json.loads(args['reading'])
-
-
 
 class Reading(restful.Resource):
     def get(self, reading_id):
         return mongo.db.readings.find_one_or_404({"_id": reading_id})
 
     def put(self, reading_id):
-        print request.json
-        mongo.db.readings.update({"_id":reading_id}, { request.json })
+        data = { key: request.json[key] for key in request.json if key != "_id" }
+        mongo.db.readings.update({"_id":reading_id}, data )
         return mongo.db.readings.find_one({"_id": reading_id})
         
     def delete(self, reading_id):
