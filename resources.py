@@ -1,5 +1,5 @@
 import json
-from flask import abort, render_template, request
+from flask import abort, render_template, request, send_file
 from flask.ext import restful
 from app import app, api, mongo, auth
 from bson.objectid import ObjectId
@@ -58,3 +58,7 @@ def saludo():
 @auth.login_required
 def secret():
     return "Hello, %s!" % auth.username()
+    
+@app.route('/ng')
+def ng():
+    return send_file('ng.html')
